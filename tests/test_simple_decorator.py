@@ -1,6 +1,15 @@
 from collections.abc import Callable
-from typing import Any, assert_type
+from typing import TYPE_CHECKING
+
 from smart_decorator import simple_decorator
+from sys import version_info
+
+if TYPE_CHECKING:
+    from typing import assert_type
+else:
+
+    def assert_type(*args, **kwargs):
+        pass
 
 
 @simple_decorator

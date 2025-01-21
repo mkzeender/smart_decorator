@@ -31,3 +31,4 @@ class _SmartDecoratorFactory[
     ) -> Callable[[DecoratedFunction], DecoratorReturnType]: ...
 
 
+
