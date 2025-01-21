@@ -1,28 +1,33 @@
 from collections.abc import Callable
-from typing import Concatenate, Never, Protocol, overload
+from typing import Any, Concatenate, Never, Protocol, overload
 
-# This overload blocks the 2nd positional argument from being a Callable
-# This would cause ambiguity as to whether we are using it as a decorator or a factory.
-# @overload
-# def decorator[
-#     **OptionType, **ParamType, ReturnType
-# ](
-#     dec_func: Callable[
-#         Concatenate[Callable[ParamType, ReturnType], Callable, OptionType],
-#         Callable[ParamType, ReturnType],
-#     ]
-# ) -> SmartDecoratorFactory[OptionType, Never, Never]: ...
-# @overload
+
+type DecoratorFunctionType[DecoratedFunction, **DecoratorArgs, DecoratorReturnType] = Callable[Concatenate[DecoratedFunction, DecoratorArgs], DecoratorReturnType]
+
+
 def decorator[
-    **OptionType, CallableInput: Callable, CallableOutput: Callable
+    DecoratedFunction: Callable, **DecoratorArgs, DecoratorReturnType = DecoratedFunction
 ](
-    dec_func: Callable[Concatenate[CallableInput, OptionType], CallableOutput]
-) -> SmartDecoratorFactory[OptionType, CallableInput, CallableOutput]: ...
+    dec_func: DecoratorFunctionType[DecoratedFunction, DecoratorArgs, DecoratorReturnType]
+) -> _SmartDecoratorFactory[DecoratedFunction, DecoratorArgs, DecoratorReturnType]: ...
 
-class SmartDecoratorFactory[**OptionType, CallableInput, CallableOutput](Protocol):
+
+class _SmartDecoratorFactory[
+    DecoratedFunction, **DecoratorArgs, DecoratorReturnType
+    ](Protocol):
+    
     @overload
     def __call__(
-        self, *args: OptionType.args, **kwargs: OptionType.kwargs
-    ) -> Callable[[CallableInput], CallableOutput]: ...
+        self,
+        func: DecoratedFunction,
+        *args: DecoratorArgs.args,
+        **kwargs: DecoratorArgs.kwargs
+    ) -> DecoratorReturnType: ...
     @overload
-    def __call__(self, func: CallableInput) -> CallableOutput: ...
+    def __call__(
+        self,
+        *args: DecoratorArgs.args,
+        **kwargs: DecoratorArgs.kwargs
+    ) -> Callable[[DecoratedFunction], DecoratorReturnType]: ...
+
+
