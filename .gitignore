@@ -1,3 +1,4 @@
 /experiments.py
 .vscode
 .pytest_cache
+__pycache__
