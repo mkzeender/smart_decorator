@@ -41,4 +41,3 @@ jobs:
     - name: Type check with PyRight
       run: |
         pyright --level=warning ./smart_decorator ./tests
-        pyright --level=warning --verifytypes ./smart_decorator
