@@ -11,7 +11,8 @@ python = ">=3.12"
 pytest = ">=6.2"
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = ["."]
+
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

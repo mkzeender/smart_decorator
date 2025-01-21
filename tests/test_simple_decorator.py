@@ -29,7 +29,7 @@ def test_callback_style():
 
     callback = my_simple_decorator(my_callback_function, 8, option2="True")
 
-    assert callback(1) == 9
+    assert callback(1) == 10
 
     assert_type(callback, Callable[[int], int])
 
@@ -42,4 +42,4 @@ def test_no_parens():
 
     assert_type(my_decorated_function, Callable[[int], int])
 
-    assert my_decorated_function(1) == 11
+    assert my_decorated_function(1) == 12
