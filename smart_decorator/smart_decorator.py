@@ -1,20 +1,8 @@
-from functools import update_wrapper, wraps
-from types import FunctionType
+from functools import wraps
+
+from smart_decorator.safe_wraps import safe_wraps
 
 _UNSET = object()
-
-
-def safe_wraps(wrapper, wrapped):
-    if (
-        wrapper is not wrapped
-        and isinstance(wrapper, FunctionType | type)
-        and (isinstance(wrapper, type(wrapped)) or isinstance(wrapped, type(wrapper)))
-    ):
-        try:
-            update_wrapper(wrapper, wrapped)
-        except (AttributeError, TypeError, KeyError):
-            pass
-    return wrapper
 
 
 def decorator(dec_func):
