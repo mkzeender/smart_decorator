@@ -1,6 +1,6 @@
 from functools import wraps
 
-from smart_decorator.safe_wraps import safe_wraps
+from smart_decorator.utils import safe_wraps
 
 _UNSET = object()
 
