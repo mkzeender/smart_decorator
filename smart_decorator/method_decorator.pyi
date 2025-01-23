@@ -1,6 +1,6 @@
 from collections.abc import Callable
 from typing import Any, Concatenate, Protocol, overload
-from smart_decorator._types import DecoratorFunctionType, Method
+from smart_decorator.types import DecoratorFunctionType, Method
 from smart_decorator.smart_decorator import _SmartDecoratorFactory
 
 def my_decorator[
