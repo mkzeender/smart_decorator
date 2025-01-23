@@ -3,48 +3,53 @@ from typing import Any, Concatenate, Protocol, overload
 from smart_decorator._types import DecoratorFunctionType, Method
 from smart_decorator.smart_decorator import _SmartDecoratorFactory
 
-def method_decorator[
+def my_decorator[
     InputSelf, **InputArgs,
     InputReturn,
     OutputSelf, **OutputArgs,
     OutputReturn, **DecoratorArgs,
 ](
     dec_func: DecoratorFunctionType[
-        Method[InputSelf, InputArgs, InputReturn],
+        Callable[Concatenate[InputSelf, InputArgs], InputReturn],
         DecoratorArgs,
         Method[OutputSelf, OutputArgs, OutputReturn],
     ]
-) -> _MethodDecoratorFactory[
-    InputSelf,
-    InputArgs,
-    InputReturn,
-    OutputSelf,
-    OutputArgs,
-    OutputReturn,
-    DecoratorArgs,
-]: ...
+) -> _Tmp[InputArgs, InputReturn]: ...
+
+# ) -> _MethodDecoratorFactory[
+#     InputSelf,
+#     InputArgs,
+#     InputReturn,
+#     OutputSelf,
+#     OutputArgs,
+#     OutputReturn,
+#     DecoratorArgs,
+# ]: ...
+
+class _Tmp[**Params, Ret]: ...
 
 class _MethodDecoratorFactory[
     InSelf, **InArgs, InRet, OutSelf, **OutArgs, OutRet, **DecArgs
 ](Protocol):
-    @overload
-    def __call__(
-        self,
-        func: Method[InSelf, InArgs, InRet],
-        *args: DecArgs.args,
-        **kwargs: DecArgs.kwargs,
-    ) -> DecoratedMethod[OutSelf, OutArgs, OutRet]: ...
-    @overload
-    def __call__(
-        self,
-        func: Callable[InArgs, InRet],
-        *args: DecArgs.args,
-        **kwargs: DecArgs.kwargs,
-    ) -> Callable[OutArgs, OutRet]: ...
-    @overload
-    def __call__(
-        self, *args: DecArgs.args, **kwargs: DecArgs.kwargs
-    ) -> _MethodDecorator[InSelf, InArgs, InRet, OutSelf, OutArgs, OutRet]: ...
+    ...
+    # @overload
+    # def __call__(
+    #     self,
+    #     func: Method[InSelf, InArgs, InRet],
+    #     *args: DecArgs.args,
+    #     **kwargs: DecArgs.kwargs,
+    # ) -> DecoratedMethod[OutSelf, OutArgs, OutRet]: ...
+    # @overload
+    # def __call__(
+    #     self,
+    #     func: Callable[InArgs, InRet],
+    #     *args: DecArgs.args,
+    #     **kwargs: DecArgs.kwargs,
+    # ) -> Callable[OutArgs, OutRet]: ...
+    # @overload
+    # def __call__(
+    #     self, *args: DecArgs.args, **kwargs: DecArgs.kwargs
+    # ) -> _MethodDecorator[InSelf, InArgs, InRet, OutSelf, OutArgs, OutRet]: ...
 
 class _MethodDecorator[InSelf, **InArgs, InRet, OutSelf, **OutArgs, OutRet](Protocol):
     @overload
