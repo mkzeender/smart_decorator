@@ -4,3 +4,4 @@
 __pycache__
 .venv
 pylance_bug.py
+.mypy_cache
