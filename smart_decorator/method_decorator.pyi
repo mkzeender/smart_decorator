@@ -14,42 +14,37 @@ def method_decorator[
         DecoratorArgs,
         Method[OutputSelf, OutputArgs, OutputReturn],
     ]
-) -> _Tmp[InputArgs, InputReturn]: ...
-
-# ) -> _MethodDecoratorFactory[
-#     InputSelf,
-#     InputArgs,
-#     InputReturn,
-#     OutputSelf,
-#     OutputArgs,
-#     OutputReturn,
-#     DecoratorArgs,
-# ]: ...
-
-class _Tmp[**Params, Ret]: ...
+) -> _MethodDecoratorFactory[
+    InputSelf,
+    InputArgs,
+    InputReturn,
+    OutputSelf,
+    OutputArgs,
+    OutputReturn,
+    DecoratorArgs,
+]: ...
 
 class _MethodDecoratorFactory[
     InSelf, **InArgs, InRet, OutSelf, **OutArgs, OutRet, **DecArgs
 ](Protocol):
-    ...
-    # @overload
-    # def __call__(
-    #     self,
-    #     func: Method[InSelf, InArgs, InRet],
-    #     *args: DecArgs.args,
-    #     **kwargs: DecArgs.kwargs,
-    # ) -> DecoratedMethod[OutSelf, OutArgs, OutRet]: ...
-    # @overload
-    # def __call__(
-    #     self,
-    #     func: Callable[InArgs, InRet],
-    #     *args: DecArgs.args,
-    #     **kwargs: DecArgs.kwargs,
-    # ) -> Callable[OutArgs, OutRet]: ...
-    # @overload
-    # def __call__(
-    #     self, *args: DecArgs.args, **kwargs: DecArgs.kwargs
-    # ) -> _MethodDecorator[InSelf, InArgs, InRet, OutSelf, OutArgs, OutRet]: ...
+    @overload
+    def __call__(
+        self,
+        func: Method[InSelf, InArgs, InRet],
+        *args: DecArgs.args,
+        **kwargs: DecArgs.kwargs,
+    ) -> DecoratedMethod[OutSelf, OutArgs, OutRet]: ...
+    @overload
+    def __call__(
+        self,
+        func: Callable[InArgs, InRet],
+        *args: DecArgs.args,
+        **kwargs: DecArgs.kwargs,
+    ) -> Callable[OutArgs, OutRet]: ...
+    @overload
+    def __call__(
+        self, *args: DecArgs.args, **kwargs: DecArgs.kwargs
+    ) -> _MethodDecorator[InSelf, InArgs, InRet, OutSelf, OutArgs, OutRet]: ...
 
 class _MethodDecorator[InSelf, **InArgs, InRet, OutSelf, **OutArgs, OutRet](Protocol):
     @overload
