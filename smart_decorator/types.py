@@ -16,3 +16,5 @@ else:
             return Method
 
     Method = DecoratorFunctionType = _GenericType()
+
+UNSET = object()
