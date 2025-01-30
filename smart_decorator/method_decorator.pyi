@@ -3,7 +3,7 @@ from typing import Any, Concatenate, Protocol, overload
 from smart_decorator.types import DecoratorFunctionType, Method
 from smart_decorator.smart_decorator import _SmartDecoratorFactory
 
-def my_decorator[
+def method_decorator[
     InputSelf, **InputArgs,
     InputReturn,
     OutputSelf, **OutputArgs,

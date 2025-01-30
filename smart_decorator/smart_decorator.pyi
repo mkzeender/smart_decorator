@@ -25,7 +25,8 @@ class _SmartDecoratorFactory[
         self,
         *args: DecoratorArgs.args,
         **kwargs: DecoratorArgs.kwargs
-    ) -> Callable[[DecoratedFunction], DecoratorReturnType]: ...
+    ) -> Callable[[DecoratedFunction], DecoratorReturnType]:
+        ...
 
 
 
