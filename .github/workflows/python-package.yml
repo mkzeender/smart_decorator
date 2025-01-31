@@ -122,7 +122,7 @@ jobs:
           name: release-dists
           path: dist/
 
-      - name: Publish release distributions to PyPI (dry run)
-        run: |
-          curl -sSL https://install.python-poetry.org | python3 -
-          poetry publish --dry-run
+      # - name: Publish release distributions to PyPI (dry run)
+      #   run: |
+      #     curl -sSL https://install.python-poetry.org | python3 -
+      #     poetry publish --dry-run
