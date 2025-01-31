@@ -32,8 +32,8 @@ jobs:
           poetry config virtualenvs.create false
       - name: Build Distribution
         run: |
-          python -m poetry sync --no-interaction
-          python -m poetry build
+          poetry sync --no-interaction
+          poetry build
 
       - name: Upload distributions
         uses: actions/upload-artifact@v4
