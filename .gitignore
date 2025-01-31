@@ -6,3 +6,4 @@ __pycache__
 pylance_bug.py
 .mypy_cache
 test_readme.py
+dist/
