@@ -1,6 +1,6 @@
 from collections.abc import Callable
 from typing import Protocol, overload
-from smart_decorator.smart_decorator import DecoratorFunctionType
+from smart_decorator.types import DecoratorFunctionType
 
 class _SimpleDecorator(Protocol):
     def __call__[**P, T](self, func: Callable[P, T], /) -> Callable[P, T]: ...
