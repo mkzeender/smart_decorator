@@ -1,11 +1,14 @@
 [project]
 name = "smart-decorator"
-version = "0.1.0"
+version = "0.1.1"
 description = "A modern library for creating decorators. Static-typed."
 authors = [{name = "Marckie Zeender",email = "mkzeender@gmail.com"}]
 requires-python = ">=3.9"
 readme = "README.md"
+license = { file = "LICENSE"}
 
+[project.urls]
+github = "https://github.com/mkzeender/smart_decorator"
 
 [tool.poetry.dependencies]
 python = ">=3.9"
