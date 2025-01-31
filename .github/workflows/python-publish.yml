@@ -28,7 +28,6 @@ jobs:
 
       - name: Setup Poetry
         run: |
-          # NOTE: put your own distribution build steps here.
           python -m pip install poetry
           poetry config virtualenvs.create false
       - name: Build Distribution
