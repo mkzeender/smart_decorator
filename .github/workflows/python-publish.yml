@@ -32,7 +32,7 @@ jobs:
           poetry config virtualenvs.create false
       - name: Build Distribution
         run: |
-          python -m poetry install --sync --no-interaction
+          python -m poetry sync --no-interaction
           python -m poetry build
 
       - name: Upload distributions
