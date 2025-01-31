@@ -10,8 +10,9 @@ python = ">=3.9"
 [tool.poetry.dev-dependencies]
 pytest = ">=6.2"
 
-[tool.pytest.ini_options]
-testpaths = ["."]
+# [tool.pytest.ini_options]
+# testpaths = [".", "README.md"]
+# addopts = "--phmdoctest"
 
 
 [build-system]
